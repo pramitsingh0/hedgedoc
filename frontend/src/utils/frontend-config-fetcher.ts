@@ -5,31 +5,43 @@
  */
 import { getConfig } from '../api/config'
 import type { FrontendConfig } from '../api/config/types'
-import type { BaseUrls } from '../components/common/base-url/base-url-context-provider'
+import { getBaseUrls } from './base-url-parser'
 import { Logger } from './logger'
+import { isBuildTime, isTestMode } from './test-modes'
+
+const logger = new Logger('Frontend config fetcher')
+
+const fetch = async (baseUrl: string): Promise<FrontendConfig | undefined> => {
+  try {
+    return await getConfig(baseUrl)
+  } catch (error) {
+    logger.error(`Couldn't fetch frontend configuration from ${baseUrl}api/private/config`)
+    return undefined
+  }
+}
+
+let frontendConfig: FrontendConfig | undefined
 
 /**
  * Fetches and caches the {@link FrontendConfig frontend config} from the backend.
  */
-export class FrontendConfigFetcher {
-  private readonly logger = new Logger('Frontend config fetcher')
-
-  private frontendConfig: FrontendConfig | undefined = undefined
-
-  public async fetch(baseUrls: BaseUrls | undefined): Promise<FrontendConfig | undefined> {
-    if (!this.frontendConfig) {
-      if (baseUrls === undefined) {
-        return undefined
-      }
-      const baseUrl = baseUrls.editor.toString()
-      try {
-        this.frontendConfig = await getConfig(baseUrl)
-      } catch (error) {
-        this.logger.error(`Couldn't fetch frontend configuration from ${baseUrl}`, error)
-        return undefined
-      }
-      this.logger.info(`Fetched frontend config from ${baseUrl}`)
-    }
-    return this.frontendConfig
+export const getFrontendConfig = async (): Promise<FrontendConfig | undefined> => {
+  if (isBuildTime) {
+    return undefined
   }
+  const baseUrl = getBaseUrls().editor
+
+  // some e2e tests need an adjusted frontend config. Therefore, the cache is deactivated.
+  if (isTestMode) {
+    return undefined
+  }
+
+  if (frontendConfig === undefined) {
+    frontendConfig = await fetch(baseUrl)
+    if (!isTestMode) {
+      //to prevent console spamming because the cache is deactivated
+      logger.info(`Fetched frontend config from ${baseUrl}api/private/config`)
+    }
+  }
+  return frontendConfig
 }

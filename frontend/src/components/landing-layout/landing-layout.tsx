@@ -18,13 +18,9 @@ import { Container } from 'react-bootstrap'
  * @param children The children that should be rendered on the page.
  */
 export const LandingLayout: React.FC<PropsWithChildren> = ({ children }) => {
-  useApplyDarkModeStyle()
-  useSaveDarkModePreferenceToLocalStorage()
-
   return (
     <div>
       <BaseAppBar />
-      <MotdModal />
       <Container className='d-flex flex-column'>
         <HeaderBar />
         <div className={'d-flex flex-column justify-content-between flex-fill text-center'}>

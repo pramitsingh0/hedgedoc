@@ -6,52 +6,13 @@
 import type { FrontendConfig } from '../../../api/config/types'
 import { AuthProviderType } from '../../../api/config/types'
 import { HttpMethod, respondToMatchingRequest } from '../../../handler-utils/respond-to-matching-request'
+import { isTestMode } from '../../../utils/test-modes'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  respondToMatchingRequest<FrontendConfig>(HttpMethod.GET, req, res, {
+  const config: FrontendConfig = {
     allowAnonymous: true,
     allowRegister: true,
-    authProviders: [
-      {
-        type: AuthProviderType.LOCAL
-      },
-      {
-        type: AuthProviderType.LDAP,
-        identifier: 'test-ldap',
-        providerName: 'Test LDAP'
-      },
-      {
-        type: AuthProviderType.DROPBOX
-      },
-      {
-        type: AuthProviderType.FACEBOOK
-      },
-      {
-        type: AuthProviderType.GITHUB
-      },
-      {
-        type: AuthProviderType.GITLAB,
-        identifier: 'test-gitlab',
-        providerName: 'Test GitLab'
-      },
-      {
-        type: AuthProviderType.GOOGLE
-      },
-      {
-        type: AuthProviderType.OAUTH2,
-        identifier: 'test-oauth2',
-        providerName: 'Test OAuth2'
-      },
-      {
-        type: AuthProviderType.SAML,
-        identifier: 'test-saml',
-        providerName: 'Test SAML'
-      },
-      {
-        type: AuthProviderType.TWITTER
-      }
-    ],
     branding: {
       name: 'DEMO Corp',
       logo: 'public/img/demo.png'
@@ -63,14 +24,57 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
       imprint: 'https://example.com/imprint'
     },
     version: {
-      major: 2,
+      major: isTestMode ? 0 : 2,
       minor: 0,
       patch: 0,
+      preRelease: isTestMode ? undefined : '',
       commit: 'mock'
     },
-    plantumlServer: 'https://www.plantuml.com/plantuml',
-    maxDocumentLength: 1000000
-  })
+    plantumlServer: isTestMode ? 'http://mock-plantuml.local' : 'https://www.plantuml.com/plantuml',
+    maxDocumentLength: isTestMode ? 200 : 1000000,
+    authProviders: [
+      {
+        type: AuthProviderType.LOCAL
+      },
+      {
+        type: AuthProviderType.FACEBOOK
+      },
+      {
+        type: AuthProviderType.GITHUB
+      },
+      {
+        type: AuthProviderType.TWITTER
+      },
+      {
+        type: AuthProviderType.DROPBOX
+      },
+      {
+        type: AuthProviderType.GOOGLE
+      },
+      {
+        type: AuthProviderType.LDAP,
+        identifier: 'test-ldap',
+        providerName: 'Test LDAP'
+      },
+      {
+        type: AuthProviderType.GITLAB,
+        identifier: 'test-gitlab',
+        providerName: 'Test GitLab'
+      },
+      {
+        type: AuthProviderType.OAUTH2,
+        identifier: 'test-oauth2',
+        providerName: 'Test OAuth2'
+      },
+      {
+        type: AuthProviderType.SAML,
+        identifier: 'test-saml',
+        providerName: 'Test SAML'
+      }
+    ]
+  }
+
+  respondToMatchingRequest<FrontendConfig>(HttpMethod.GET, req, res, config)
 }
 
 export default handler

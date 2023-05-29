@@ -1,3 +1,5 @@
+'use client'
+
 /*
  * SPDX-FileCopyrightText: 2023 The HedgeDoc developers (see AUTHORS file)
  *
@@ -12,7 +14,7 @@ import { ExtensionEventEmitterProvider } from '../markdown-renderer/hooks/use-ex
 import { ChangeEditorContentContextProvider } from './change-content-context/codemirror-reference-context'
 import { EditorPane } from './editor-pane/editor-pane'
 import { useComponentsFromAppExtensions } from './editor-pane/hooks/use-components-from-app-extensions'
-import { HeadMetaProperties } from './head-meta-properties/head-meta-properties'
+import { useNoteAndAppTitle } from './head-meta-properties/use-note-and-app-title'
 import { useScrollState } from './hooks/use-scroll-state'
 import { useSetScrollSource } from './hooks/use-set-scroll-source'
 import { useUpdateLocalHistoryEntry } from './hooks/use-update-local-history-entry'
@@ -33,8 +35,6 @@ export enum ScrollSource {
 export const EditorPageContent: React.FC = () => {
   useTranslation()
 
-  useApplyDarkModeStyle()
-  useSaveDarkModePreferenceToLocalStorage()
   useUpdateLocalHistoryEntry()
 
   const scrollSource = useRef<ScrollSource>(ScrollSource.EDITOR)
@@ -67,14 +67,13 @@ export const EditorPageContent: React.FC = () => {
   )
 
   const editorExtensionComponents = useComponentsFromAppExtensions()
+  useNoteAndAppTitle()
 
   return (
     <ChangeEditorContentContextProvider>
       <ExtensionEventEmitterProvider>
         {editorExtensionComponents}
         <CommunicatorImageLightbox />
-        <HeadMetaProperties />
-        <MotdModal />
         <div className={'d-flex flex-column vh-100'}>
           <EditorAppBar />
           <div className={'flex-fill d-flex h-100 w-100 overflow-hidden flex-row'}>
