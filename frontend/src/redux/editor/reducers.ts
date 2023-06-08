@@ -3,21 +3,20 @@
  *
  * SPDX-License-Identifier: AGPL-3.0-only
  */
-import { loadFromLocalStorage, saveToLocalStorage } from './methods'
+import { loadFromLocalStorage, saveToLocalStorage } from './local-storage'
 import type { EditorConfig, EditorConfigActions } from './types'
 import { EditorConfigActionType } from './types'
 import type { Reducer } from 'redux'
 
-const initialState: EditorConfig = {
-  ligatures: true,
-  syncScroll: true,
-  smartPaste: true,
-  spellCheck: false,
-  lineWrapping: true
-}
-
 const getInitialState = (): EditorConfig => {
-  return { ...initialState, ...loadFromLocalStorage() }
+  const storedConfiguration = loadFromLocalStorage()
+  return {
+    ligatures: storedConfiguration?.ligatures === true ?? true,
+    syncScroll: storedConfiguration?.syncScroll === true ?? true,
+    smartPaste: storedConfiguration?.smartPaste === true ?? true,
+    spellCheck: storedConfiguration?.spellCheck === true ?? false,
+    lineWrapping: storedConfiguration?.lineWrapping === true ?? true
+  }
 }
 
 export const EditorConfigReducer: Reducer<EditorConfig, EditorConfigActions> = (
