@@ -1,8 +1,8 @@
 # API Authentication
 
 !!! info "Design Document"
-This is a design document, explaining the design and vision for a HedgeDoc 2
-feature. It is not a user guide and may or may not be fully implemented.
+    This is a design document, explaining the design and vision for a HedgeDoc 2
+    feature. It is not a user guide and may or may not be fully implemented.
 
 ## Public API
 

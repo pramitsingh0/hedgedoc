@@ -1,4 +1,4 @@
-# Getting started
+# Development Setup
 
 To run HedgeDoc 2.0 you need three components: the backend, the frontend and the reverse proxy.
 
@@ -22,12 +22,12 @@ recommend caddy and the provided configuration.
 2. Install Node.js. You need at least Node 16, but we recommend Node 20.
 3. Install [Yarn](https://yarnpkg.com/getting-started/install)
 4. Install Caddy (select one of the two options)
-   - [Download](https://caddyserver.com/) and place the `caddy` binary in `dev-reverse-proxy`. Ensure it is executable with `chmod +x caddy`. Users of macOS may need to run `xattr -d com.apple.quarantine ./caddy` to lift the quarantine for executables from the internet. 
-   - Install Caddy using your package manager
+    - [Download](https://caddyserver.com/) and place the `caddy` binary in `dev-reverse-proxy`. Ensure it is executable with `chmod +x caddy`. Users of macOS may need to run `xattr -d com.apple.quarantine ./caddy` to lift the quarantine for executables from the internet.
+    - Install Caddy using your package manager
 5. Install the dependencies in repo root directory with `yarn install`
 6. Create the `.env` config file by copying the example: `cp .env.example .env`
 7. Run `yarn start:dev`
-    > This will execute the backend, frontend and reverse proxy at once
+   > This will execute the backend, frontend and reverse proxy at once
 8. Use your browser to go to <http://localhost:8080>. This may take a while because everything is compiled on the fly.
 
 ## More detailed development setup
@@ -56,7 +56,7 @@ HedgeDoc 2 is configured using environment variables.
 For development, we recommend creating an `.env` file.
 
 1. Create an `.env` file. We recommend to use the example file by running `cp .env.example .env`
-   You can modify this file according to the [configuration documentation](../config/index.md).
+   You can modify this file according to the [configuration documentation](/references/config/index.md).
 2. Make sure that you've set `HD_SESSION_SECRET` in your `.env` file. Otherwise, the backend won't start.
    > In dev mode you don't need a secure secret. So use any value. If you want to generate a secure session secret you
    can use e.g. `openssl rand -hex 16 | sed -E 's/(.*)/HD_SESSION_SECRET=\1/' >> .env`.
@@ -83,7 +83,7 @@ This only needs to be done once, except if you've changed code in the commons pa
 
 The frontend can be run in four different ways. The development mode compiles everything on demand. So the first time
 you open a page in the browser it may take some time.
-See [here](setup/frontend.md) for a more detailed description of the environment variables for the frontend.
+See [here](frontend.md) for a more detailed description of the environment variables for the frontend.
 A special configuration isn't necessary but keep in mind that you execute all commands from within the `frontend` directory.
 
 ### Mocked backend

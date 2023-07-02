@@ -1,6 +1,6 @@
 # LDAP
 
-LDAP authentication can be tested with the [`test-openldap`](https://github.com/rroemhild/docker-test-openldap) docker image from [rroemhild](https://github.com/rroemhild).
+If you are developing HedgeDoc and need to test something with a LDAP server you can use the [`test-openldap`](https://github.com/rroemhild/docker-test-openldap) docker image from [rroemhild](https://github.com/rroemhild).
 
 Simply run
 
@@ -8,7 +8,7 @@ Simply run
 docker run --rm -p 10389:10389 -p 10636:10636 rroemhild/test-openldap
 ```
 
-and add the following to the `.env` file before starting the backend.
+and add the following to the `.env` file then start the backend.
 
 ```
 HD_AUTH_LDAPS="FUTURAMA"
@@ -22,7 +22,7 @@ HD_AUTH_LDAP_FUTURAMA_BIND_DN="cn=admin,dc=planetexpress,dc=com"
 HD_AUTH_LDAP_FUTURAMA_BIND_CREDENTIALS="GoodNewsEveryone"
 ```
 
-You should then be able to log in with either of these logins (`username` : `password`):
+You should be able to log in with either of these logins (`username` : `password`):
 
 - `professor` : `professor`
 - `fry` : `fry`
@@ -32,3 +32,4 @@ You should then be able to log in with either of these logins (`username` : `pas
 - `bender` : `bender`
 - `amy` : `amy`
 
+If you need to know more about which information are held by each of these accounts, have a look at the [documentation](https://github.com/rroemhild/docker-test-openldap#ldap-structure).

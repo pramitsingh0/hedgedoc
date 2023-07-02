@@ -1,8 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2021 The HedgeDoc developers (see AUTHORS file)
-
-SPDX-License-Identifier: CC-BY-SA-4.0
--->
 
 
 ## Environment Variables
@@ -16,7 +11,7 @@ The following environment variables are recognized by the frontend process.
 | NEXT_PUBLIC_USE_MOCK_API | `true`, `false`                                                                                                                  | Will activate the mocked backend                                                                                                                                                                                  |
 | NEXT_PUBLIC_TEST_MODE    | `true`, `false`                                                                                                                  | Will activate additional HTML attributes that are used to identify elements for test suits.                                                                                                                       |
 
-Variables that start with `NEXT_PUBLIC_` will be compiled into the build. You can't change them at after compilation.
+Variables that start with `NEXT_PUBLIC_` will be compiled into the build. You can't change them after compilation.
 You shouldn't need to set them yourself. Use the designated npm tasks instead.
 
 ## UI Test
