@@ -7,7 +7,7 @@ import '../../../global-styles/index.scss'
 import { ApplicationLoader } from '../../components/application-loader/application-loader'
 import { BaseUrlContextProvider } from '../../components/common/base-url/base-url-context-provider'
 import { FrontendConfigContextProvider } from '../../components/common/frontend-config-context/frontend-config-context-provider'
-import { MotdModal } from '../../components/common/motd-modal/motd-modal'
+import { MotdModal } from '../../components/global-dialogs/motd-modal/motd-modal'
 import { DarkMode } from '../../components/layout/dark-mode/dark-mode'
 import { ExpectedOriginBoundary } from '../../components/layout/expected-origin-boundary'
 import { UiNotificationBoundary } from '../../components/notifications/ui-notification-boundary'
@@ -16,11 +16,16 @@ import { getBaseUrls } from '../../utils/base-url-parser'
 import { configureLuxon } from '../../utils/configure-luxon'
 import { getFrontendConfig } from '../../utils/frontend-config-fetcher'
 import type { Metadata } from 'next'
+import type { PropsWithChildren } from 'react'
 import React from 'react'
 
 configureLuxon()
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+interface RootLayoutProps extends PropsWithChildren {
+  appBar: React.ReactNode
+}
+
+export default async function RootLayout({ children, appBar }: RootLayoutProps) {
   const baseUrls = getBaseUrls()
   const frontendConfig = await getFrontendConfig()
 
@@ -38,7 +43,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <ApplicationLoader>
                   <DarkMode />
                   <MotdModal />
-                  <UiNotificationBoundary>{children}</UiNotificationBoundary>
+                  <UiNotificationBoundary>
+                    <div className={'d-flex flex-column vh-100'}>
+                      {appBar}
+                      {children}
+                    </div>
+                  </UiNotificationBoundary>
                 </ApplicationLoader>
               </StoreProvider>
             </FrontendConfigContextProvider>

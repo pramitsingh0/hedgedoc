@@ -1,3 +1,5 @@
+'use client'
+
 /*
  * SPDX-FileCopyrightText: 2023 The HedgeDoc developers (see AUTHORS file)
  *
@@ -5,6 +7,9 @@
  */
 import { useMayEdit } from '../../../../../hooks/common/use-may-edit'
 import { useNoteTitle } from '../../../../../hooks/common/use-note-title'
+import { ShowIf } from '../../../../common/show-if/show-if'
+import styles from './note-title-element.module.css'
+import React from 'react'
 import { useTranslatedText } from '../../../../../hooks/common/use-translated-text'
 import { UiIcon } from '../../../../common/icons/ui-icon'
 import { ShowIf } from '../../../../common/show-if/show-if'
@@ -20,13 +25,12 @@ export const NoteTitleElement: React.FC = () => {
   const readOnlyLabel = useTranslatedText('appbar.editor.readOnly')
 
   return (
-    <Fragment>
-      <ShowIf condition={!isWriteable}>
-        <span className={'text-secondary me-2'}>
-          <UiIcon icon={IconLock} title={readOnlyLabel} />
+    <div className={ `d-flex flex-column align-items-center` }>
+      <ShowIf condition={ !isWriteable }>
+        <span className={ 'text-secondary me-2' }>
+          <UiIcon icon={ IconLock } title={ readOnlyLabel }/>
         </span>
       </ShowIf>
-      <span className={'text-truncate mw-100'}>{noteTitle}</span>
-    </Fragment>
-  )
+      <span className={ 'text-truncate mw-100' }>{ noteTitle }</span>
+    </div>)
 }
