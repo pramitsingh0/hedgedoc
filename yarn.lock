@@ -2441,6 +2441,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@hedgedoc/docs@workspace:docs":
+  version: 0.0.0-use.local
+  resolution: "@hedgedoc/docs@workspace:docs"
+  dependencies:
+    prettier: 2.8.8
+  languageName: unknown
+  linkType: soft
+
 "@hedgedoc/frontend@workspace:frontend":
   version: 0.0.0-use.local
   resolution: "@hedgedoc/frontend@workspace:frontend"

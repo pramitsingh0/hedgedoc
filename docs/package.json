@@ -1,0 +1,13 @@
+{
+  "name": "@hedgedoc/docs",
+  "version": "2.0.0-dev",
+  "license": "AGPL-3.0",
+  "scripts": {
+    "lint": "prettier -c content/**/*.md",
+    "lint:fix": "prettier -w content/**/*.md"
+  },
+  "devDependencies": {
+    "prettier": "2.8.8"
+  },
+  "packageManager": "yarn@3.6.1"
+}
