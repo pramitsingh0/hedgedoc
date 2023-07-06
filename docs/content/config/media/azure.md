@@ -14,6 +14,7 @@ You can of course also create the container in the Azure portal if you prefer.
 
 Then you just add the following lines to your configuration:  
 <small>(with the appropriate substitution for `<CONNECTION_STRING>` and `<NAME>` of course)</small>
+
 ```
 HD_MEDIA_BACKEND="azure"
 HD_MEDIA_BACKEND_AZURE_CONNECTION_STRING="<CONNECTION_STRING>"

@@ -31,4 +31,3 @@ You should then be able to log in with either of these logins (`username` : `pas
 - `leela` : `leela`
 - `bender` : `bender`
 - `amy` : `amy`
-

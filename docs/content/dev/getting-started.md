@@ -22,15 +22,16 @@ recommend caddy and the provided configuration.
 2. Install Node.js. You need at least Node 16, but we recommend Node 20.
 3. Install [Yarn](https://yarnpkg.com/getting-started/install)
 4. Install Caddy (select one of the two options)
-   - [Download](https://caddyserver.com/) and place the `caddy` binary in `dev-reverse-proxy`. Ensure it is executable with `chmod +x caddy`. Users of macOS may need to run `xattr -d com.apple.quarantine ./caddy` to lift the quarantine for executables from the internet. 
+   - [Download](https://caddyserver.com/) and place the `caddy` binary in `dev-reverse-proxy`. Ensure it is executable with `chmod +x caddy`. Users of macOS may need to run `xattr -d com.apple.quarantine ./caddy` to lift the quarantine for executables from the internet.
    - Install Caddy using your package manager
 5. Install the dependencies in repo root directory with `yarn install`
 6. Create the `.env` config file by copying the example: `cp .env.example .env`
 7. Run `yarn start:dev`
-    > This will execute the backend, frontend and reverse proxy at once
+   > This will execute the backend, frontend and reverse proxy at once
 8. Use your browser to go to <http://localhost:8080>. This may take a while because everything is compiled on the fly.
 
 ## More detailed development setup
+
 The following sections describe a more detailed setup of all components.
 
 ## Preconditions
@@ -52,6 +53,7 @@ It's important to use [Yarn](https://yarnpkg.com/). We don't support `npm` or an
 else than Yarn won't work.
 
 ## Create the configuration
+
 HedgeDoc 2 is configured using environment variables.
 For development, we recommend creating an `.env` file.
 
@@ -59,7 +61,7 @@ For development, we recommend creating an `.env` file.
    You can modify this file according to the [configuration documentation](../config/index.md).
 2. Make sure that you've set `HD_SESSION_SECRET` in your `.env` file. Otherwise, the backend won't start.
    > In dev mode you don't need a secure secret. So use any value. If you want to generate a secure session secret you
-   can use e.g. `openssl rand -hex 16 | sed -E 's/(.*)/HD_SESSION_SECRET=\1/' >> .env`.
+   > can use e.g. `openssl rand -hex 16 | sed -E 's/(.*)/HD_SESSION_SECRET=\1/' >> .env`.
 3. Make sure that `HD_BASE_URL` in `.env` is set to the base url where HedgeDoc should be available. In local dev
    environment this is most likely `http://localhost:8080`.
 

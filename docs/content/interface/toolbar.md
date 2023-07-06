@@ -77,11 +77,11 @@ If some text is selected it will either put that as the link, if it thinks that 
 3. **Collapsable Block**  
    This button adds a template for a Collapsable Block like this:
 
-     ```
-     :::spoiler Toggle label
-     Toggled content
-     :::
-     ```
+   ```
+   :::spoiler Toggle label
+   Toggled content
+   :::
+   ```
 
 4. **Comment**  
    This button adds `> []` at the beginning of the line. You can either specify a name for your comment by

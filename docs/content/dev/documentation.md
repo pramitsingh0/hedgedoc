@@ -9,7 +9,7 @@ the [hedgedoc/hedgedoc repo](https://github.com/hedgedoc/hedgedoc). These files 
 nothing special about them.
 
 The configuration for mkdocs lies in the `docs` folder in a file called `mkdocs.yml`. With that file the theme and menu - among others - can be configured.
-  **Please note:** Any new files need to be linked to by other files or put in the navigation, otherwise the files will be very hard to find on the documentation website.
+**Please note:** Any new files need to be linked to by other files or put in the navigation, otherwise the files will be very hard to find on the documentation website.
 
 ## Building
 

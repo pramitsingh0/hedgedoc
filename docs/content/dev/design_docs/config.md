@@ -1,5 +1,6 @@
 # Config
 
+<!-- prettier-ignore -->
 !!! info "Design Document"
     This is a design document, explaining the design and vision for a HedgeDoc 2
     feature. It is not a user guide and may or may not be fully implemented.
@@ -71,8 +72,9 @@ The default exports are used by NestJS to provide the values to the rest of the 
 Because it's possible to configure some authentication providers multiple times (e.g. multiple LDAPs or GitLabs), we use user defined environment variable names. With the user defined names it's not possible to put the correct labels in the schema or build the config objects as we do in every other file.
 
 Therefore, we have two big extra steps in the default export:
-1. To populate the config object we have some code at the top of the default export to gather all configured variables into arrays. 
-2. The error messages are piped into the util method `replaceAuthErrorsWithEnvironmentVariables`.  This replaces the error messages of the form `gitlab[0].providerName` with `HD_AUTH_GITLAB_<nameOfFirstGitlab>_PROVIDER_NAME`. For this the util function gets the error, the name of the config option (e.g `'gitlab'`), the approriate prefix (e.g. `'HD_AUTH_GITLAB_'`), and an array of the user defined names.
+
+1. To populate the config object we have some code at the top of the default export to gather all configured variables into arrays.
+2. The error messages are piped into the util method `replaceAuthErrorsWithEnvironmentVariables`. This replaces the error messages of the form `gitlab[0].providerName` with `HD_AUTH_GITLAB_<nameOfFirstGitlab>_PROVIDER_NAME`. For this the util function gets the error, the name of the config option (e.g `'gitlab'`), the approriate prefix (e.g. `'HD_AUTH_GITLAB_'`), and an array of the user defined names.
 
 ## Mocks
 

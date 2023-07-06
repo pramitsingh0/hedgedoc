@@ -1,8 +1,9 @@
 # Events
 
+<!-- prettier-ignore -->
 !!! info "Design Document"
-This is a design document, explaining the design and vision for a HedgeDoc 2
-feature. It is not a user guide and may or may not be fully implemented.
+    This is a design document, explaining the design and vision for a HedgeDoc 2
+    feature. It is not a user guide and may or may not be fully implemented.
 
 In HedgeDoc 2, we use an event system based on [EventEmitter2][eventemitter2].
 It's used to reduce circular dependencies between different services and inform these services about changes.
@@ -14,4 +15,3 @@ In the enum definition a comment should tell you what exactly this value should 
 
 [eventemitter2]: https://github.com/EventEmitter2/EventEmitter2
 [nestjs/eventemitter]: https://docs.nestjs.com/techniques/events
-

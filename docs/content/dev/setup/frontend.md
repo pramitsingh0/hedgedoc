@@ -4,15 +4,14 @@ SPDX-FileCopyrightText: 2021 The HedgeDoc developers (see AUTHORS file)
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
-
 ## Environment Variables
 
 The following environment variables are recognized by the frontend process.
 
 | Name                     | Possible Values                                                                                                                  | Description                                                                                                                                                                                                       |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HD_BASE_URL              | Any URL with protocol, domain and optionally directory and port. Must end with a trailing slash. (e.g. `http://localhost:3001/`) | The URL under which the frontend is expected. Setting this is mandatory so the server side rendering can generate assets URLs. You only need to set this yourself if you use the production mode.                 |
-| HD_RENDERER_BASE_URL     | Same as `HD_BASE_URL`                                                                                                            | You can provide this variable if the renderer should use another domain than the editor. This is recommended for security reasons but not mandatory. This variable is optional and will fallback to `HD_BASE_URL` | 
+| HD_RENDERER_BASE_URL     | Same as `HD_BASE_URL`                                                                                                            | You can provide this variable if the renderer should use another domain than the editor. This is recommended for security reasons but not mandatory. This variable is optional and will fallback to `HD_BASE_URL` |
 | NEXT_PUBLIC_USE_MOCK_API | `true`, `false`                                                                                                                  | Will activate the mocked backend                                                                                                                                                                                  |
 | NEXT_PUBLIC_TEST_MODE    | `true`, `false`                                                                                                                  | Will activate additional HTML attributes that are used to identify elements for test suits.                                                                                                                       |
 
@@ -59,5 +58,5 @@ The debug logger can be enabled in production by setting `debugLogging` in the b
 This can be done e.g. by executing this JavaScript command in the browser's console.
 
 ```javascript
-window.localStorage.setItem("debugLogging", 'true');
+window.localStorage.setItem("debugLogging", "true");
 ```

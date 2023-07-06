@@ -14,6 +14,3 @@ or
 ```sh
 docker buildx build -f frontend/docker/Dockerfile -t hedgedoc-frontend .
 ```
-
-
-

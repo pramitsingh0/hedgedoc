@@ -28,5 +28,3 @@ Because we need to have empty constructors in our entity classes for TypeORM to 
 - Have no lists which can be empty (so probably most of them)
 - Should either return a complete and fully useable instance or return a Pick/Omit type.
 - Exceptions to these rules are allowed, if they are mentioned in the method documentation
-
-
